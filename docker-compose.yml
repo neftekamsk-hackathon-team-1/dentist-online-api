@@ -1,0 +1,25 @@
+version: '3'
+services:
+  web:
+    build: .
+    ports:
+      - '5000:80'
+    env_file: ./.env
+    environment:
+      HOST: 0.0.0.0
+      PORT: 80
+    volumes:
+      - /data/online-service/logs:/usr/src/app/logs
+    restart: always
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:11.2-alpine
+    ports:
+      - '54321:5432'
+    env_file:
+      - ./.postgres.env
+    volumes:
+      - /data/online-service/postgres-data:/var/lib/postgresql/data
+    restart: always

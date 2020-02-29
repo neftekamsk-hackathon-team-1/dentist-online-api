@@ -1,0 +1,13 @@
+{
+  "cSpell.words": [
+    "DOCX",
+    "Docxtemplater",
+    "Pizzip",
+    "UNOCONV",
+    "pino",
+    "sname",
+    "суперадминистратором"
+  ],
+  "jscpd.files": "src/**/*",
+  "editor.formatOnSave": true
+}
