@@ -37,4 +37,10 @@ export class AppointmentsService {
 
     return appointment;
   }
+
+  public async getAppointments(specialistId: number): Promise<Appointment[]> {
+    return this.appointmentRep.find({
+      specialist_id: specialistId,
+    });
+  }
 }
