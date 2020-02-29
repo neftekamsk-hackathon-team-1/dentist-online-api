@@ -6,11 +6,13 @@ import path from 'path';
 import pino from 'pino';
 import { ConfigModule, ConfigService } from '../config';
 import { ServicesModule } from '../services/services.module';
+import { SpecialistsModule } from '../specialists/specialists.module';
 
 @Module({
   imports: [
     ConfigModule,
     ServicesModule,
+    SpecialistsModule,
     LoggerModule.forRootAsync({
       useFactory: (configService: ConfigService) => {
         if (configService.get('NODE_ENV') === 'production') {
