@@ -5,10 +5,12 @@ import { LoggerModule } from 'nestjs-pino';
 import path from 'path';
 import pino from 'pino';
 import { ConfigModule, ConfigService } from '../config';
+import { ServicesModule } from '../services/services.module';
 
 @Module({
   imports: [
     ConfigModule,
+    ServicesModule,
     LoggerModule.forRootAsync({
       useFactory: (configService: ConfigService) => {
         if (configService.get('NODE_ENV') === 'production') {
