@@ -4,6 +4,7 @@ import appRootPath from 'app-root-path';
 import { LoggerModule } from 'nestjs-pino';
 import path from 'path';
 import pino from 'pino';
+import { AppointmentsModule } from '../appointments/appointments.module';
 import { ConfigModule, ConfigService } from '../config';
 import { ServicesModule } from '../services/services.module';
 import { SpecialistsModule } from '../specialists/specialists.module';
@@ -13,6 +14,7 @@ import { SpecialistsModule } from '../specialists/specialists.module';
     ConfigModule,
     ServicesModule,
     SpecialistsModule,
+    AppointmentsModule,
     LoggerModule.forRootAsync({
       useFactory: (configService: ConfigService) => {
         if (configService.get('NODE_ENV') === 'production') {
