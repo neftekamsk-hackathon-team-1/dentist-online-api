@@ -41,11 +41,11 @@ export class Appointment {
   @Column({ type: 'integer', nullable: true })
   service_id?: number;
 
-  @ManyToOne(type => Specialist, { nullable: true })
+  @ManyToOne(type => Specialist, { nullable: true, eager: true })
   @JoinColumn({ name: 'specialist_id', referencedColumnName: 'id' })
   specialist?: Specialist;
 
-  @ManyToOne(type => Service, { nullable: true })
+  @ManyToOne(type => Service, { nullable: true, eager: true })
   @JoinColumn({ name: 'service_id', referencedColumnName: 'id' })
   service?: Service;
 }
