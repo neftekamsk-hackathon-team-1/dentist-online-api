@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "Dentist Online API",
   "author": "Edgar Poghosyan <starguitar307@gmail.com>",
-  "license": "MIT",
+  "license": "UNLICENSED",
   "scripts": {
     "build": "rimraf dist && tsc -p tsconfig.build.json",
     "build:fast": "tsc -p tsconfig.build.json",
