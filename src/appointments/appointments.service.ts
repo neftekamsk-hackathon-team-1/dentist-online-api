@@ -1,8 +1,9 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import _ from 'lodash';
 import { ServicesService } from '../services/services.service';
 import { SpecialistsService } from '../specialists/specialists.service';
 import { CreateAppointmentDto } from './dto/CreateAppointment.dto';
+import { EditAppointmentDto } from './dto/EditAppointment.dto';
 import { Appointment } from './entities/Appointment.entity';
 import { AppointmentRepository } from './repositories/Appointment.repository';
 
@@ -45,6 +46,22 @@ export class AppointmentsService {
   }
 
   public async getAllAppointments(): Promise<Appointment[]> {
-    return this.appointmentRep.find();
+    return this.appointmentRep.find({ order: { created_at: 'DESC' } });
+  }
+
+  public async editAppointment(
+    appointmentId: number,
+    editData: EditAppointmentDto,
+  ): Promise<Appointment> {
+    const appointment = await this.appointmentRep.findOne(appointmentId);
+
+    if (!appointment) {
+      throw new NotFoundException();
+    }
+
+    this.appointmentRep.merge(appointment, editData);
+    await this.appointmentRep.save(appointment);
+
+    return appointment;
   }
 }

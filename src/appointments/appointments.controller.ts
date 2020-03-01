@@ -1,8 +1,17 @@
-import { Body, Get, Param, ParseIntPipe, Post, Query } from '@nestjs/common';
+import {
+  Body,
+  Get,
+  Param,
+  ParseIntPipe,
+  Post,
+  Put,
+  Query,
+} from '@nestjs/common';
 import { ApiCreatedResponse, ApiOkResponse } from '@nestjs/swagger';
 import { AppController } from '../common/decorators/app-controller.decorator';
 import { AppointmentsService } from './appointments.service';
 import { CreateAppointmentDto } from './dto/CreateAppointment.dto';
+import { EditAppointmentDto } from './dto/EditAppointment.dto';
 import { Appointment } from './entities/Appointment.entity';
 
 @AppController({ prefix: '/' })
@@ -29,5 +38,14 @@ export class AppointmentsController {
   @ApiOkResponse({ type: [Appointment] })
   async getAppointments(): Promise<Appointment[]> {
     return this.appointmentsService.getAllAppointments();
+  }
+
+  @Put('/appointments/:appointmentId')
+  @ApiOkResponse({ type: Appointment })
+  async editAppointment(
+    @Param('appointmentId', ParseIntPipe) appointmentId: number,
+    @Body() editData: EditAppointmentDto,
+  ): Promise<Appointment> {
+    return this.appointmentsService.editAppointment(appointmentId, editData);
   }
 }
