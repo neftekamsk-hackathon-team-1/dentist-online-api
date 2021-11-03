@@ -59,7 +59,7 @@
     "typeorm": "^0.2.20",
     "typeorm-transactional-cls-hooked": "^0.1.11",
     "uuid": "^3.3.3",
-    "validator": "^12.1.0",
+    "validator": "^13.7.0",
     "xlsx-template": "^0.5.0",
     "yandex-checkout": "^1.0.13"
   },
